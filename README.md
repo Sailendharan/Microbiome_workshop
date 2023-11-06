@@ -1,4 +1,5 @@
-# Microbiome_workshop
+# Microbiome workshop
+# Sonnenburg Lab
 
 This workshop will cover amplicon-based microbiome analysis using [QIIME2](https://qiime2.org). 
 This four-day workshop will consist of hands on training to analyze from raw dataset through publication-quality statistics and visualizations.
