@@ -1,5 +1,3 @@
-# Microbiome workshop
-# Sonnenburg Lab
 
 This workshop will cover amplicon-based microbiome analysis using [QIIME2](https://qiime2.org). 
 This four-day workshop will consist of hands on training to analyze from raw dataset through publication-quality statistics and visualizations.
@@ -21,3 +19,27 @@ Other options for everyother OS including windows OS is
 [WSL](https://docs.qiime2.org/2023.2/install/virtual/wsl/),  
 [Docker](https://docs.qiime2.org/2023.2/install/virtual/docker/) and  
 [Amazon Web Services](https://docs.qiime2.org/2019.1/install/virtual/aws/) 
+
+## $ prompt
+
+The $ in the `Terminal` is simply a way for the computer to notify you that it is ready to receive typed commands.    
+
+**Note: The $ is not typed when issuing commands. It is already there.**
+
+For example, `student01` would see the following `Terminal` prompt:
+```
+[student01@macbook ~]$
+```
+
+## Home directory
+Once you have connected to the sumo computer, you “**land**” within your “**Home**” directory. For `student01`, this would be:
+
+```
+/home/BIOTECH/student01
+```
+
+If at any point you get lost within the labyrinth of directories, simply type `cd` to come back.
+
+If you would like to back up by a single directory, type `cd ..`
+
+To know where your terminal is “looking” at any moment, you can invoke the print working directory command: `pwd`
