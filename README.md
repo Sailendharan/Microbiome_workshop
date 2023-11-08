@@ -96,7 +96,7 @@ wget -O "raw_data/reverse.fastq.gz" "https://data.qiime2.org/2019.1/tutorials/at
 **Barcodes**     
 ```
 wget -O "raw_data/barcodes.fastq.gz" "https://data.qiime2.org/2019.1/tutorials/atacama-soils/10p/barcodes.fastq.gz" 
-
+```
 **Demultiplexed reads**
 ```
 mkdir raw_data/demux
