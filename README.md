@@ -46,7 +46,7 @@ $ ls
 111323_qiime2_tutorial   
 ```
   
-Next, move into your  111323_qiime2_tutorial folder. This will be done with the change directory command cd into  111323_qiime2_tutorial:
+Next, move into your  111323_qiime2_tutorial folder. This will be done with the change directory command `cd` into  111323_qiime2_tutorial:
 
 Change directory
 
