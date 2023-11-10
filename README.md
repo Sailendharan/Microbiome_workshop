@@ -17,7 +17,7 @@ For example, `student01` would see the following `Terminal` prompt:
 ```
 
 ## Home directory
-Once you have connected to the sumo computer, you “**land**” within your “**Home**” directory. For `student01`, this would be:
+You “**land**” within your “**Home**” directory. For `student01`, this would be:
 
 ```
 /home/student01
