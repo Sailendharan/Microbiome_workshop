@@ -85,6 +85,20 @@ In this tutorial you’ll use QIIME 2 to perform an analysis of soil samples fro
 
 `mkdir raw_data`
 
+**Demultiplexed reads**
+```
+cd raw_data
+curl -L https://stanfordmedicine.box.com/shared/static/7ehprsc1rdnr5i1v4r4feiykesj3ykbu --output demux.zip
+unzip demux.zip
+I will share the link to the demultiplexed files during the workshop. Please download the files and move them to the raw_data folder
+```
+
+**Metadata file**
+```
+wget -O "sample-metadata.tsv" "https://data.qiime2.org/2019.1/tutorials/atacama-soils/sample_metadata.tsv"
+```
+
+### Optional (These filese are raw files before demultiplexing)
 **Forward reads**   
 ```
 wget -O "raw_data/forward.fastq.gz" "https://data.qiime2.org/2019.1/tutorials/atacama-soils/10p/forward.fastq.gz"   
@@ -97,11 +111,7 @@ wget -O "raw_data/reverse.fastq.gz" "https://data.qiime2.org/2019.1/tutorials/at
 ```
 wget -O "raw_data/barcodes.fastq.gz" "https://data.qiime2.org/2019.1/tutorials/atacama-soils/10p/barcodes.fastq.gz" 
 ```
-**Demultiplexed reads**
-```
-mkdir raw_data/demux
-cp /mnt/software/workshop/data/qiime2/qiime2_tutorial/demux/data/*.fastq.gz raw_data/demux/.
-```
+
 
 ## 1. First steps
 
@@ -109,11 +119,16 @@ cp /mnt/software/workshop/data/qiime2/qiime2_tutorial/demux/data/*.fastq.gz raw_
 
 You can format the metadata file in a spreadsheet and validate the format using a google spreadsheet plugin 'Keemei' as described on the QIIME2 website. The only required column is the sample id column, which should be first. All other columns should correspond to sample metadata. Below, we use the default filename of metadata.txt.
 
+
+### 1.2 Activate conda environment
+
+You should run this workflow in a conda environment, which makes sure the correct version of the Python packages required by QIIME2 are being used. You can activate this conda environment with this command:
+
 ```
-wget -O "sample-metadata.tsv" "https://data.qiime2.org/2019.1/tutorials/atacama-soils/sample_metadata.tsv"
+conda activate qiime2-amplicon-2023.9
 ```
-  
-### 1.2 Inspect read quality
+
+### 1.3 Inspect read quality
 A combination of [FASTQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) and [MultiQC](https://multiqc.info/) is used to check if the reads are of reasonable quality and to  how your reads should be trimmed in downstream steps. The report "***multiqc_report.html***" is found in the fastqc output directory. you can view this report in the web browser. 
 
 ```
@@ -126,15 +141,9 @@ multiqc .
 cd ..
 ```
 
-### 1.3 Activate conda environment
 
-You should run this workflow in a conda environment, which makes sure the correct version of the Python packages required by QIIME2 are being used. You can activate this conda environment with this command:
 
-```
-source activate qiime2-2020.8
-```
-
-## 2 Paired-end read analysis commands
+## 2 Paired-end read analysis commands (Optional)
 To analyze these data, the sequences that you just downloaded must first be imported into an qiime artifact of type EMPPairedEndSequences.
 
 ```
@@ -158,11 +167,12 @@ qiime tools import --type 'SampleData[PairedEndSequencesWithQuality]' --input-pa
 
 qiime demux summarize --i-data raw_data/demux-paired-end.qza --o-visualization raw_data/demux-paired-end.qzv
 ```
-### 2.2 transferring qzv files between server and your system
+
+### 2.2 transferring qzv files between server and your system (Optional useful when working in a server)
 
 * open a new terminal in your laptop and write the following scp command to transfer files between server and laptop only for linux and Mac
 
-change the xxx to match your id's
+change the xxx to match your id's another option is sftp
 
 ```
 scp -r studentxx@sumo.biotech.wisc.edu:/home/BIOTECH/xxxxx/qiime2_tutorial/demux/demux-paired-end.qzv /xxx/xxxx/
@@ -189,10 +199,6 @@ if you interested in getting to know more about the DADA2, [here](https://benjjn
 mkdir Analysis
 
 qiime dada2 denoise-paired --i-demultiplexed-seqs demux/trimmed_paired-end.qza --p-trim-left-f 13 --p-trim-left-r 13 --p-trunc-len-f 150 --p-trunc-len-r 150 --p-n-threads 2 --o-table Analysis/table.qza --o-representative-sequences Analysis/rep-seqs.qza --o-denoising-stats Analysis/denoising-stats.qza
-```
-
-```
-cp /mnt/software/workshop/data/qiime2/qiime2_tutorial/Analysis/*.qza Analysis/.
 ```
 
 ### 3.1 Visualizing Denoise stats
