@@ -188,6 +188,15 @@ qiime cutadapt trim-paired --i-demultiplexed-sequences raw_data/demux-paired-end
 qiime demux summarize --i-data raw_data/trimmed_paired-end.qza --o-visualization raw_data/trimmed_paired-end.qzv
 ```
 
+### 2.3 Filtering samples based on read count
+Samples with low read counts can be filtered from the dataset using the following commands
+
+```
+qiime tools export --input-path raw_data/demux-paired-end.qzv --output-path ./demux-paired-end/
+
+qiime demux filter-samples --i-demux raw_data/demux-paired-end.qza --m-metadata-file ./demux-paired-end/per-sample-fastq-counts.tsv --p-where 'CAST([forward sequence count] AS INT) > 100' --o-filtered-demux filtered_demux.qza
+```
+
 ## 3 Running DADA2 workflow :
 
 DADA2 is a pipeline for detecting and correcting (where possible) Illumina amplicon sequence data. This quality control process will additionally filter any phiX reads (commonly present in marker gene Illumina sequence data) that are identified in the sequencing data, and will filter chimeric sequences.
