@@ -144,7 +144,7 @@ qiime tools import --type EMPPairedEndSequences --input-path raw_data --output-p
 You next can demultiplex the sequence reads. This requires the sample metadata file, and you must indicate which column in that file contains the per-sample barcodes. In this case, that column name is BarcodeSequence. In this data set, the barcode reads are the reverse complement of those included in the sample metadata file, so we additionally include the --p-rev-comp-mapping-barcodes parameter. After demultiplexing, we can generate and view a summary of how many sequences were obtained per sample.
 
 ```
-qiime demux emp-paired --m-barcodes-file sample-metadata.tsv --m-barcodes-column BarcodeSequence --i-seqs raw_data/paired-end-sequences.qza --o-per-sample-sequences demux.qza --p-rev-comp-mapping-barcodes
+qiime demux emp-paired --m-barcodes-file sample-metadata.tsv --m-barcodes-column BarcodeSequence --i-seqs raw_data/paired-end-sequences.qza --o-per-sample-sequences demux.qza --p-rev-comp-mapping-barcodes  --o-error-correction-details demux-details.qza
 
 qiime demux summarize --i-data demux.qza --o-visualization demux.qzv
 ```
